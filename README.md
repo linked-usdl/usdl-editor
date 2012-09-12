@@ -31,3 +31,4 @@ Importing vocabularies is necessary for editing properties.
 
 License: [MIT] (https://github.com/linked-usdl/usdl-editor/blob/master/LICENSE.md)
 
+For convinience the project comes with many other Open Source libraries, which have their own license statement.
