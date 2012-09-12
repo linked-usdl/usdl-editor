@@ -29,5 +29,5 @@ Importing vocabularies is necessary for editing properties.
 
 [Torsten Leidig] (https://github.com/drleidig)
 
-License: [MIT] (https://github.com/linked-usdl/usdl-editor/LICENSE)
+License: [MIT] (https://github.com/linked-usdl/usdl-editor/blob/master/LICENSE.md)
 
