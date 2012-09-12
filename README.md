@@ -1,4 +1,4 @@
-# usdl-edit
+# usdl-editor
 A simple Web application for editing Linked USDL descriptions.
 
 ## Installation
@@ -22,9 +22,12 @@ Importing vocabularies is necessary for editing properties.
 
 ## Development
 
-- Source hosted at [GitHub](https://github.com/linked-usdl/usdl-edit)
-- Report issues, questions, feature requests on [GitHub Issues](https://github.com/linked-usdl/usdl-edit/issues)
+- Source hosted at [GitHub](https://github.com/linked-usdl/usdl-editor)
+- Report issues, questions, feature requests on [GitHub Issues](https://github.com/linked-usdl/usdl-editor/issues)
 
 ## Authors
 
 [Torsten Leidig] (https://github.com/drleidig)
+
+License: [MIT] (https://github.com/linked-usdl/usdl-editor/LICENSE)
+
