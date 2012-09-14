@@ -5,6 +5,8 @@ A simple Web application for editing Linked USDL descriptions.
 
 Download the directory into a subfolder of your Web server documents folder. Invoke `index.html` from a browser (Firefox, Chrome, Safari).
 
+On Google Chrome you have the option to install it as a Web App. Open `chrome://chrome/extensions/`  and load the folder as an unpacked extension. Installing the editor as a Web app, allows to run it locally without any XSS hassle.
+
 ## Usage
 
 The editor opens with an empty service description. You can create as many service or models you in the current description on the left hand side. For a selected service or model you can use the different tab sections to create  or add information for this service in specific cards. You can switch between the cards by clicking into the card frame or close a card by clicking into the 'X' button on the upper right of a card. You can scroll inside a card by swiping on the card.
