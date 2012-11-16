@@ -964,12 +964,12 @@
                            data-content="description" data-view
                            data-property="dcterms:description"></td>
                     </tr>
-                    <!--tr>
+                    <tr>
                        <td class="propertyCol top right">Interface Element</td>
                        <td class="valueCol top uriEdit" data-show="uri"
                            placeholder="Enter URL ..." data-view
                            data-content="elem" data-property="usdl:hasInterfaceElement"></td>
-                    </tr-->
+                    </tr>
                    </table>
                </div>
              </div>
