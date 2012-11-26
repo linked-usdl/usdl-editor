@@ -1667,7 +1667,7 @@
         error = (opts && opts.error) || $.rdf.databank.defaults.error,
         proxy = (opts && opts.proxy) || $.rdf.databank.defaults.proxy,
         depth = (opts && opts.depth) || $.rdf.databank.defaults.depth;
-      url = (typeof data === 'string' && data.substring(1, 7) === 'http://') ? $.uri(data) : data;
+      url = (typeof data === 'string' && data.substring(0, 7) === 'http://') ? $.uri(data) : data;
       if (url.scheme) {
         if (!queue(this, url, { success: success, error: error })) {
           script = '<script type="text/javascript" src="' + proxy + '?id=' + this.id + '&amp;depth=' + depth + '&amp;url=' + encodeURIComponent(url.resolve('').toString()) + '"></script>';

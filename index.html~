@@ -122,12 +122,12 @@
 	 <li><a class="sapUiUx3NavBarItem" data-target="About" data-subject="<>">About</a></li>
          <li><a class="sapUiUx3NavBarItem" data-target="Service">General</a></li>
          <li><a class="sapUiUx3NavBarItem" data-target="Properties">Properties</a></li>
-         <li><a class="sapUiUx3NavBarItem" data-target="InteractionProtocols">Interaction</a></li>
-         <li><a class="sapUiUx3NavBarItem" data-target="Offering" >Offering &amp; Pricing</a></li>
+         <li><a class="sapUiUx3NavBarItem" data-target="Interactions">Interaction</a></li>
+         <li><a class="sapUiUx3NavBarItem" data-target="Offering" data-subject="<>">Offering &amp; Pricing</a></li>
          <li><a class="sapUiUx3NavBarItem" data-target="ServiceLevelProfile">SLA</a></li>
          <li><a class="sapUiUx3NavBarItem" data-target="SecurityProfiles">Security</a></li>
          <li><a class="sapUiUx3NavBarItem" data-target="Legal" >Terms &amp; Conditions</a></li>
-         <li><a class="sapUiUx3NavBarItem" data-target="Providers" >Provider</a></li>
+	 <li><a class="sapUiUx3NavBarItem" data-target="Providers" data-subject="<>">Provider</a></li>
          <li><a class="sapUiUx3NavBarItem" data-target="Artefacts" >Artefacts</a></li>
          <span class="sapUiUx3NavBarArrow" style="left: 104px;" id="__bar0-arrow"></span>
       </ul>
@@ -544,7 +544,7 @@
              <div class="snippet_content smallCard">
                    <table class="listTable">
                     <tbody class="lens"
-                           data-query="?o usdl:hasProvider ?p. ?p foaf:name ?title">
+                           data-query="?p rdf:type gr:BusinessEntity . ?p foaf:name ?title">
                      <tr data-view>
                        <td class="valueCol top link" data-show="literal" data-content="title"
                            data-attribute-name="data-parameter" data-attribute="p"
@@ -556,7 +556,6 @@
                        <td class="propertyCol top addLink"
                            data-template="provider.n3"
                            data-resource-type="usdl:BusinessEntity"
-                           data-property="usdl:hasProvider"
                            data-link-target="Provider">Add provider ... </td>
                      </tr></tfoot>
                    </table>
@@ -777,73 +776,12 @@
         </div>
 </div>
 
-
-<div class="snippet" typeof="snippet:Snippet" id="InteractionProtocols">
-	<h1 class="snippet_title" property="dcterms:title">Interaction Protocols</h1>
+<div class="snippet" typeof="snippet:Snippet" id="Interactions">
+	<h1 class="snippet_title" property="dcterms:title">Interactions</h1>
 	<div class="snippet_body" property="snippet:body">
-             <div class="snippet_content smallCard">
-                   <table class="listTable">
-                    <tbody class="lens"
-                           data-query="?o usdl:hasInteractionProtocol ?ip. ?ip dcterms:title ?title">
-                     <tr data-view>
-                       <td class="valueCol top link" data-show="literal" data-content="title"
-                           data-attribute-name="data-parameter" data-attribute="ip"
-                           data-link-target="InteractionProtocol">
-                       </td>
-                     </tr></tbody>
-                    <tfoot>
-                     <tr>
-                       <td class="propertyCol top addLink"
-                           data-template="interactionprotocol.n3"
-                           data-resource-type="usdl:InteractionProtocol" data-property="usdl:hasInteractionProtocol"
-                           data-link-target="InteractionProtocol">Add interaction protocol ... </td>
-                     </tr></tfoot>
-                   </table>
-             </div>
-        </div>
-</div>
-
-<div class="snippet" typeof="snippet:Snippet" id="InteractionProtocol">
-	<h1 class="snippet_title" property="dcterms:title">Interaction Protocol</h1>
-	<div class="snippet_body" property="snippet:body">
-             <div class="snippet_content lens smallCard"
-                  data-query="?o dcterms:title ?title. ( ?o dcterms:description ?description ). ( ?o usdl:hasTechnicalInterface ?i)"
-               >
-               <div class="swipe">
-                   <table class="propertyTable">
-                    <tr>
-                       <td class="propertyCol top right">Title</td>
-                       <td class="valueCol top textEdit" data-show="literal"
-                           data-content="title" data-view data-property="dcterms:title"
-                           placeholder="Enter title ..."></td>
-                    </tr>
-                      <tr>
-                       <td class="propertyCol top right">Description</td>
-                       <td class="valueCol top"><div class="editHtml"
-                           data-content="description" data-format="html" data-view
-                           data-show="literal" data-property="dcterms:description"
-                           placeholder="Enter description ..."></div></td>
-                      </tr>
-                    <tr>
-                       <td class="propertyCol top right">Technical Interface</td>
-                       <td class="valueCol top uriEdit" data-show="uri"
-                           placeholder="Enter URL ..." data-view
-                           data-content="i" data-property="usdl:hasTechnicalInterface"></td>
-                    </tr>
-                  </table>
-                <span class="transclude" data-snippet="ListInteractions"
-                      data-attribute="ip" data-view
-                      data-show="literal" data-attribute-name="data-parameter"></span>
-               </div>
-             </div>
-        </div>
-</div>
-
-<div class="snippet" typeof="snippet:Snippet" id="ListInteractions">
-	<h1 class="snippet_title" property="dcterms:title">ListInteractions</h1>
-	<div class="snippet_body" property="snippet:body">
-             <div class="lens"
-                  data-query="?o usdl:hasInteraction ?interaction. ?interaction dcterms:title ?title">
+          <div class="snippet_content lens smallCard"
+               data-query="?o usdl:hasInteraction ?interaction. ?interaction dcterms:title ?title">
+            <div class="swipe">
                    <table class="listTable">
                     <tbody><tr data-view>
                        <td class="valueCol top link" data-show="literal" data-content="title"
@@ -858,7 +796,7 @@
                            data-link-target="Interaction">Add interaction ... </td>
                     </tr></tfoot>
                    </table>
-             </div>
+            </div>
         </div>
 </div>
 
@@ -881,16 +819,16 @@
                            data-format="html" placeholder="Enter description..."
                            data-content="description" data-view data-property="dcterms:description"></td>
                     </tr>
-                    <!--tr>
-                       <td class="propertyCol top right">Interface Operation</td>
+                    <tr>
+                       <td class="propertyCol top right">Interface</td>
                        <td class="valueCol top uriEdit" data-show="uri"
                            placeholder="Enter URL ..." data-view
-                           data-content="op" data-property="usdl:hasInterfaceOperation"></td>
-                    </tr-->
+                           data-content="op" data-property="usdl:hasInterface"></td>
+                    </tr>
                 </table>
-                <h2>Input</h2>
+                <h2>Receives</h2>
                 <span class="transclude" data-snippet="ListInputs"></span>
-                <h2>Output</h2>
+                <h2>Yields</h2>
                 <span class="transclude" data-snippet="ListOutputs"></span>
              </div>
         </div>
@@ -900,7 +838,7 @@
 	<h1 class="snippet_title" property="dcterms:title">ListInputs</h1>
 	<div class="snippet_body" property="snippet:body">
              <div class="lens"
-                  data-query="?o usdl:hasInput ?input. ?input rdfs:label ?label">
+                  data-query="?o usdl:receives ?input. ?input rdfs:label ?label">
                    <table class="propertyTable">
                     <tbody><tr data-view>
                        <td class="valueCol top link" data-show="literal" data-content="label"
@@ -911,8 +849,8 @@
                     <tfoot><tr>
                        <td class="propertyCol top addObject"
                            data-template="parameter.n3" 
-                           data-property="usdl:hasInput" data-resource-type="usdl:Parameter"
-                           data-link-target="Parameter">Add input ... </td>
+                           data-property="usdl:receives" data-resource-type="usdl:Parameter"
+                           data-link-target="Parameter">Add ... </td>
                     </tr></tfoot>
                    </table>
                </div>
@@ -923,7 +861,7 @@
 	<h1 class="snippet_title" property="dcterms:title">ListOutputs</h1>
 	<div class="snippet_body" property="snippet:body">
              <div class="lens"
-                  data-query="?o usdl:hasOutput ?output. ?output rdfs:label ?label">
+                  data-query="?o usdl:yields ?output. ?output rdfs:label ?label">
                    <table class="propertyTable">
                     <tbody><tr data-view>
                        <td class="valueCol top link" data-show="literal" data-content="label"
@@ -935,8 +873,8 @@
                     <tfoot><tr>
                        <td class="propertyCol top addObject"
                            data-template="parameter.n3" 
-                           data-property="usdl:hasOutput" data-resource-type="usdl:Parameter"
-                           data-link-target="Parameter">Add output ... </td>
+                           data-property="usdl:yields" data-resource-type="usdl:Parameter"
+                           data-link-target="Parameter">Add ... </td>
                     </tr></tfoot>
                    </table>
               </div>
@@ -964,12 +902,12 @@
                            data-content="description" data-view
                            data-property="dcterms:description"></td>
                     </tr>
-                    <tr>
+                    <!--tr>
                        <td class="propertyCol top right">Interface Element</td>
                        <td class="valueCol top uriEdit" data-show="uri"
                            placeholder="Enter URL ..." data-view
                            data-content="elem" data-property="usdl:hasInterfaceElement"></td>
-                    </tr>
+                    </tr-->
                    </table>
                </div>
              </div>
@@ -1485,7 +1423,7 @@
 	<h1 class="snippet_title" property="dcterms:title">Offerings</h1>
 	<div class="snippet_body" property="snippet:body">
              <div class="snippet_content lens smallCard"
-                  data-query="?offering usdl:includes ?o . (?offering dcterms:title ?title)">
+                  data-query="?offering rdf:type usdl:ServiceOffering . (?offering dcterms:title ?title)">
                    <table class="listTable">
                     <tbody><tr data-view>
                        <td class="valueCol top link" data-show="literal" data-content="title"
@@ -1496,7 +1434,7 @@
                     <tfoot><tr>
                        <td class="propertyCol top addObject"
                            data-template="offering.n3"
-                           data-resource-type="usdl:ServiceOffering" data-inverse-property="usdl:includes"
+                           data-resource-type="usdl:ServiceOffering"
                            data-link-target="ServiceOffering">Add offering ... </td>
                     </tr></tfoot>
                    </table>
@@ -1913,40 +1851,6 @@
 
 <#subject> a usdl:Interaction;
       dcterms:title ""@en ;
-      dcterms:description ""@en.
-	</script>
-</div>
-
-<div class="snippet" typeof="snippet:Snippet" id="interactionprotocol.n3">
-	<h1 class="snippet_title" property="dcterms:title">interactionprotocol.n3</h1>
-	<script class="snippet_body" property="snippet:body" type="text/n3">
-@base <#baseurl> .
-@prefix ctag:    <http://commontag.org/ns#> .
-@prefix dcterms:  <http://purl.org/dc/terms/> .
-@prefix dctypes:  <http://purl.org/dc/dcmitype/> .
-@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
-@prefix gr:      <http://purl.org/goodrelations/v1#> .
-@prefix msm:     <http://cms-wg.sti2.org/ns/minimal-service-model#> .
-@prefix org:     <http://www.w3.org/ns/org#> .
-@prefix owl:     <http://www.w3.org/2002/07/owl#> .
-@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
-@prefix time:    <http://www.w3.org/2006/time#> .
-@prefix usdl:  <http://www.linked-usdl.org/ns/usdl-core#> .
-@prefix legal:  <http://www.linked-usdl.org/ns/usdl-legal#> .
-@prefix price:  <http://www.linked-usdl.org/ns/usdl-pricing#> .
-@prefix sla:  <http://www.linked-usdl.org/ns/usdl-sla#> .
-@prefix blueprint:  <http://bizweb.sap.com/TR/blueprint#> .
-@prefix vcard:   <http://www.w3.org/2006/vcard/ns#> .
-@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
-@prefix sawsdl:  <http://www.w3.org/ns/sawsdl#> .
-@prefix sarest: <http://www.knoesis.org/research/srl/standards/sa-rest/#> .
-@prefix wl: <http://www.wsmo.org/ns/wsmo-lite#> .
-@prefix http: <http://www.w3.org/2011/http#> .
-
-<#subject> a usdl:InteractionProtocol;
-      dcterms:title "#name"@en ;
       dcterms:description ""@en.
 	</script>
 </div>
@@ -2406,8 +2310,9 @@
        dcterms:title "#name"@en;
        dcterms:abstract ""@en;
        dcterms:description ""@en;
-       foaf:thumbnail <http://ddrsl001xb.drss.sap.corp:8888/bizwebportal/resources/assets/icons/05_Icon_UIDivision.png>;
-       foaf:depiction <http://ddrsl001xb.drss.sap.corp:8888/bizweb/icons/GBFlipper_AW.png> .
+#       foaf:thumbnail <http://ddrsl001xb.drss.sap.corp:8888/bizwebportal/resources/assets/icons/05_Icon_UIDivision.png>;
+#       foaf:depiction <http://ddrsl001xb.drss.sap.corp:8888/bizweb/icons/GBFlipper_AW.png>
+       .
         </script>
 </div>
 
@@ -2457,8 +2362,9 @@
        dcterms:title "#name"@en;
        dcterms:abstract ""@en;
        dcterms:description ""@en;
-       foaf:thumbnail <http://ddrsl001xb.drss.sap.corp:8888/bizwebportal/resources/assets/icons/05_Icon_UIDivision.png>;
-       foaf:depiction <http://ddrsl001xb.drss.sap.corp:8888/bizweb/icons/GBFlipper_AW.png> .
+#       foaf:thumbnail <http://ddrsl001xb.drss.sap.corp:8888/bizwebportal/resources/assets/icons/05_Icon_UIDivision.png>;
+#       foaf:depiction <http://ddrsl001xb.drss.sap.corp:8888/bizweb/icons/GBFlipper_AW.png> 
+       .
                           </script>
 </div>
 

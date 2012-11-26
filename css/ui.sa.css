@@ -477,6 +477,10 @@ table {
    text-align: right;
 }
 
+.uriEdit {
+   word-break: break-all;
+}
+
 .uriEdit input {
    width: 100%;
    font-family: Arial, Helvetica, sans-serif;

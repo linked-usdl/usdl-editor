@@ -46,6 +46,7 @@
 		       var editable = jQuery(e.target).attr("contenteditable") == "true"
 		                    || e.target.nodeName == "INPUT"
 		                    || e.target.nodeName =="TEXTAREA"
+		                    || e.target.nodeName =="SELECT"
                        if (!editable) e.preventDefault()}
               }   
             }

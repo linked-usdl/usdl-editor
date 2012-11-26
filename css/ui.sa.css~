@@ -464,6 +464,7 @@ table {
    font-size: 9pt;
   margin: 0;
   padding: 0;
+  color: #424242;
 }
 
 .textEdit input {
@@ -480,6 +481,7 @@ table {
    width: 100%;
    font-family: Arial, Helvetica, sans-serif;
    font-size: 9pt;
+   word-break: break-all;
 }
 
 .option input {

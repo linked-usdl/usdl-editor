@@ -231,9 +231,9 @@ function dirname(loc) {
                                function (e) {
                                  e.preventDefault();
 				 var dt = e.originalEvent.dataTransfer
-				 var moz_url= dt.getData('text/x-moz-url')
-                                 var files = dt.files
-			         if (files.length == 1) {
+			         var types = dt.types
+			         if ($.inArray("application/x-moz-file", types) != -1) {
+                                   var files = dt.files
                                    var reader = new FileReader();
                                    reader.onload = function (event) {
                                      var content = event.target.result
@@ -275,7 +275,8 @@ function dirname(loc) {
                                    }
                                    reader.readAsText(files[0]);
                                    return false
-				 } else {
+				 } else if ($.inArray("text/x-moz-url", types) != -1) {
+				     var uri= dt.getData('text/x-moz-url').split('\n')[0]
                                      var kb = $.rdf()
                                      kb.prefix('foaf', 'http://xmlns.com/foaf/0.1/')
                                        .prefix('rdf', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#')
@@ -297,8 +298,59 @@ function dirname(loc) {
                                        .prefix('time', 'http://www.w3.org/2006/time#')
                                        .prefix('gr', 'http://purl.org/goodrelations/v1#')
                                        .prefix('doap', 'http://usefulinc.com/ns/doap#')
-                                     kb.load(moz_url)
-                                     $.jGrowl("Resource "+moz_url+" loaded.",  {closer: false})
+                                       .base(findBase(kb))
+		                     var options = {
+                                         type: 'GET',
+                                         url: uri,
+                                         success: function (data) {
+                                                    kb.load(data)
+                                                    document.kb = kb
+                                                    $sa.store.registerModification('About')
+                                                    $.jGrowl('description loaded.')
+                                                 },
+                                         error: function(xhr, textStatus, err) {
+                                                    $.jGrowl('Error loading description.')
+                                                }
+		                     }
+                                     $.ajax(options)
+				 } else if ($.inArray("text/uri-list", types) != -1) {
+				     var uri = dt.getData('text/uri-list').split('\n')[0]
+                                     var kb = $.rdf()
+                                     kb.prefix('foaf', 'http://xmlns.com/foaf/0.1/')
+                                       .prefix('rdf', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#')
+                                       .prefix('rdfs', 'http://www.w3.org/2000/01/rdf-schema#')
+                                       .prefix('msm', 'http://cms-wg.sti2.org/ns/minimal-service-model#')
+                                       .prefix('owl', 'http://www.w3.org/2002/07/owl#')
+                                       .prefix('dcterms', 'http://purl.org/dc/terms/')
+                                       .prefix('usdl', 'http://www.linked-usdl.org/ns/usdl-core#')
+                                       .prefix('legal', 'http://www.linked-usdl.org/ns/usdl-legal#')
+                                       .prefix('price', 'http://www.linked-usdl.org/ns/usdl-pricing#')
+                                       .prefix('sla', 'http://www.linked-usdl.org/ns/usdl-sla#')
+                                       .prefix('sec', 'http://www.linked-usdl.org/ns/usdl-sec#')
+                                       .prefix('blueprint', 'http://bizweb.sap.com/TR/blueprint#')
+                                       .prefix('vcard', 'http://www.w3.org/2006/vcard/ns#')
+                                       .prefix('xsd', 'http://www.w3.org/2001/XMLSchema#')
+                                       .prefix('ctag', 'http://commontag.org/ns#')
+                                       .prefix('org', 'http://www.w3.org/ns/org#')
+                                       .prefix('skos', 'http://www.w3.org/2004/02/skos/core#')
+                                       .prefix('time', 'http://www.w3.org/2006/time#')
+                                       .prefix('gr', 'http://purl.org/goodrelations/v1#')
+                                       .prefix('doap', 'http://usefulinc.com/ns/doap#')
+                                       .base(findBase(kb))
+		                     var options = {
+                                         type: 'GET',
+                                         url: uri,
+                                         success: function (data) {
+                                                    kb.load(data)
+                                                    document.kb = kb
+                                                    $sa.store.registerModification('About')
+                                                    $.jGrowl('description loaded.')
+                                                 },
+                                         error: function(xhr, textStatus, err) {
+                                                    $.jGrowl('Error loading description.')
+                                                }
+		                     }
+                                     $.ajax(options)
 			         }
                                })
     show(params.activeTab, params.subject)

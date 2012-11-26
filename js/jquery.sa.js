@@ -1216,7 +1216,6 @@ var encodeSubject = function (s) {
                                 })
 
         $('.selectEdit').livequery(function () {
-//		                    $(this).addClass('macro')
 		                    $(this).editable({
                                               type: 'select',
                                               editClass: 'valueColEdit',
