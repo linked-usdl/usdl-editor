@@ -124,7 +124,7 @@
          <li><a class="sapUiUx3NavBarItem" data-target="Properties">Properties</a></li>
          <li><a class="sapUiUx3NavBarItem" data-target="Interactions">Interaction</a></li>
          <li><a class="sapUiUx3NavBarItem" data-target="Offering" data-subject="<>">Offering &amp; Pricing</a></li>
-         <li><a class="sapUiUx3NavBarItem" data-target="ServiceLevelProfile">SLA</a></li>
+	 <li><a class="sapUiUx3NavBarItem" data-target="ServiceLevelProfile" data-subject="<>">SLA</a></li>
          <li><a class="sapUiUx3NavBarItem" data-target="SecurityProfiles">Security</a></li>
          <li><a class="sapUiUx3NavBarItem" data-target="Legal" >Terms &amp; Conditions</a></li>
 	 <li><a class="sapUiUx3NavBarItem" data-target="Providers" data-subject="<>">Provider</a></li>
@@ -544,7 +544,7 @@
              <div class="snippet_content smallCard">
                    <table class="listTable">
                     <tbody class="lens"
-                           data-query="?p rdf:type gr:BusinessEntity . ?p foaf:name ?title">
+                           data-query="?p rdf:type gr:BusinessEntity . ?p gr:legalName ?title">
                      <tr data-view>
                        <td class="valueCol top link" data-show="literal" data-content="title"
                            data-attribute-name="data-parameter" data-attribute="p"
@@ -555,7 +555,7 @@
                      <tr>
                        <td class="propertyCol top addLink"
                            data-template="provider.n3"
-                           data-resource-type="usdl:BusinessEntity"
+                           data-resource-type="gr:BusinessEntity"
                            data-link-target="Provider">Add provider ... </td>
                      </tr></tfoot>
                    </table>
@@ -601,7 +601,7 @@
 	<h1 class="snippet_title" property="dcterms:title">Provider</h1>
 	<div class="snippet_body" property="snippet:body">
              <div class="snippet_content lens smallCard"
-                  data-query="?o foaf:name ?name. (?o foaf:homepage ?homepage ). (?o usdl:legalForm ?legal). (?o dcterms:description ?description). ?o vcard:adr ?adr. (?o foaf:logo ?logo)"
+                  data-query="?o gr:legalName ?name. (?o foaf:homepage ?homepage ). (?o usdl:legalForm ?legal). (?o dcterms:description ?description). ?o vcard:adr ?adr. (?o foaf:logo ?logo)"
                >
                <div class="swipe">
                    <table class="propertyTable">
@@ -920,10 +920,10 @@
              <div class="snippet_content smallCard">
                    <table class="listTable">
                     <tbody class="lens"
-                           data-query="?offering usdl:includes ?o . ?offering usdl:hasServiceLevelProfile ?slp. (?slp dcterms:title ?title)">
+                           data-query="?p rdf:type sla:ServiceLevelProfile . (?p dcterms:title ?title)">
                      <tr data-view>
                        <td class="valueCol top link" data-show="literal" data-content="title"
-                           data-attribute-name="data-parameter" data-attribute="slp"
+                           data-attribute-name="data-parameter" data-attribute="p"
                            data-link-target="ServiceLevelProfileElement">
                        </td>
                      </tr></tbody>
@@ -931,7 +931,7 @@
                      <tr>
                        <td class="propertyCol top addObject"
                            data-template="servicelevelprofile.n3"
-                           data-resource-type="usdl:ServiceLevelProfile" data-property="usdl:hasServiceLevelProfile"
+                           data-resource-type="sla:ServiceLevelProfile" data-property="sla:hasServiceLevelProfile"
                            data-link-target="ServiceLevelProfileElement">Add service level profile ... </td>
                      </tr></tfoot>
                    </table>
@@ -945,7 +945,7 @@
              <div class="snippet_content smallCard">
                    <table class="listTable">
                     <tbody class="lens"
-                           data-query="?o usdl:hasServiceLevelProfile ?slp. (?slp dcterms:title ?title)">
+                           data-query="?o sla:hasServiceLevelProfile ?slp. (?slp dcterms:title ?title)">
                      <tr data-view>
                        <td class="valueCol top link" data-show="literal" data-content="title"
                            data-attribute-name="data-parameter" data-attribute="slp"
@@ -956,7 +956,7 @@
                      <tr>
                        <td class="propertyCol top addLink"
                            data-template="servicelevelprofile.n3"
-                           data-resource-type="usdl:ServiceLevelProfile" data-property="usdl:hasServiceLevelProfile"
+                           data-resource-type="sla:ServiceLevelProfile" data-property="sla:hasServiceLevelProfile"
                            data-link-target="ServiceLevelProfileElement">Add service level profile ... </td>
                      </tr></tfoot>
                    </table>
@@ -1476,6 +1476,10 @@
                             data-content="page" data-property="foaf:page"></td>
                     </tr>
                    </table>
+                  <h2>Offerers</h2>
+                  <span><span class="transclude" data-snippet="ListServiceOfferers"
+                              data-attribute-name="data-parameter"
+                              data-attribute="subject" data-show="uri" data-view></span></span>
                   <h2>Items</h2>
                   <span><span class="transclude" data-snippet="ListIncludedServices"
                               data-attribute-name="data-parameter"
@@ -1487,6 +1491,30 @@
                   <span><span class="transclude" data-snippet="ServiceLevelProfiles" data-attribute-name="data-parameter"
                          data-attribute="subject" data-show="uri" data-view></span></span>
                </div>
+             </div>
+        </div>
+</div>
+
+<div class="snippet" typeof="snippet:Snippet" id="ListServiceOfferers">
+	<h1 class="snippet_title" property="dcterms:title">ServiceOfferers</h1>
+	<div class="snippet_body" property="snippet:body">
+             <div class="lens"
+                  data-query="?p gr:offers ?o. ?p gr:legalName ?title">
+                   <table class="listTable">
+                    <tbody><tr data-view>
+                       <td class="valueCol top link" data-show="literal" data-content="title"
+                           data-attribute-name="data-parameter" data-attribute="p"
+                           data-link-target="Provider" >
+                       </td>
+                    </tr></tbody>
+                    <tfoot><tr>
+                       <td class="propertyCol top addLink"
+                           data-template="provider.n3" 
+			   data-inverse-property="gr:offers" data-resource-type="gr:BusinessEntity"
+			   data-title-property="gr:legalName"
+                           data-link-target="Provider">Add offerer ... </td>
+                    </tr></tfoot>
+                   </table>
              </div>
         </div>
 </div>
@@ -2346,17 +2374,8 @@
 
 <#subject> a usdl:Service;
        dcterms:subject [ a skos:Concept;
-  	                        skos:inScheme blueprint:SolutionType ;
-                                rdfs:label "Business Solution"],
-                              [ a skos:Concept;
-  	                        skos:inScheme blueprint:PlatformType ;
-                                rdfs:label "Android"],
-                              [ a skos:Concept;
-  	                        skos:inScheme blueprint:BusinessArea ;
-                                rdfs:label "Services"],
-                              [ a skos:Concept;
-  	                        skos:inScheme blueprint:Industry ;
-                                rdfs:label "Other services"];
+  	                   skos:inScheme blueprint:Industry ;
+                           rdfs:label "Other services"];
        dcterms:modified ""^^xsd:datetime;
        dcterms:created ""^^xsd:datetime;
        dcterms:title "#name"@en;
@@ -2397,7 +2416,7 @@
 @prefix http: <http://www.w3.org/2011/http#> .
 
 <#subject> a gr:BusinessEntity;
-             foaf:name "#name";
+             gr:legalName "#name";
 #             foaf:logo <http://ddrsl001xb.drss.sap.corp:8888/bizweb/icons/03_Icon_50.png>;
              foaf:homepage <>;
              usdl:legalForm "" ;
@@ -2442,7 +2461,7 @@
 @prefix wl: <http://www.wsmo.org/ns/wsmo-lite#> .
 @prefix http: <http://www.w3.org/2011/http#> .
 
-<#subject> a usdl:ServiceLevelProfile;
+<#subject> a sla:ServiceLevelProfile;
       dcterms:title "#name"@en.
         </script>
 </div>

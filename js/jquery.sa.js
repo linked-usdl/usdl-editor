@@ -708,6 +708,8 @@ $sa.command.commands = {
                              var inverseProperty = $(this).attr("data-inverse-property")
                              var template = $(this).attr("data-template")
                              var type = $(this).attr("data-resource-type")
+                             var titleProperty = $(this).attr("data-title-property")
+		             titleProperty = titleProperty?titleProperty:"dcterms:title"
 // display selection popup first
                              var dia = $("<div/>")
                              var inner = $("<div/>").addClass("dialog").appendTo(dia)
@@ -723,7 +725,7 @@ $sa.command.commands = {
                                                 else
                                                    union = val
                                              })
-                             var result = union.where("?subject dcterms:title ?title")
+                             var result = union.where("?subject "+titleProperty+" ?title")
                              var source = []
                              result.each(function () {
                                              source.push({label: this.title.value,
