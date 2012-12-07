@@ -321,7 +321,7 @@ table.display {
 }
 
 .link.removable:hover div.remove {
-    visibility: display;
+    visibility: visible;
 }
 
 .ui-button.close {

@@ -325,7 +325,7 @@ table.display {
 }
 
 .ui-button.close {
-    background-image: url("../images/dlg-close.png");
+    background-image: url("../images/icon_close.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: 1.5em;
