@@ -66,7 +66,7 @@
                        data-attribute-name="data-parameter"
                        data-attribute="service" data-persist="subject"
                        data-content="title" placeholder="Enter title...">Enter title ...</div>
-		  <div class="ui-button delete"></div>
+		  <!--div class="ui-button delete"></div-->
                </li>
 	      </ul>
          </div>
@@ -78,7 +78,7 @@
                        data-attribute-name="data-parameter"
                        data-attribute="service" data-persist="subject"
                        data-content="title" placeholder="Enter title...">Enter title ...</div>
-		  <div class="ui-button delete"></div>
+		  <!--div class="ui-button delete"></div-->
                </li>
              </ul>
          </div>
@@ -157,10 +157,12 @@
 <div class="snippet" typeof="snippet:Snippet" id="core.templates.snippet.default">
     <h1 class="snippet_title" property="dcterms:title">core.templates.snippet.default</h1>
     <div class="snippet_body" property="snippet:body">
-                     <a class="command" style="float:right; cursor:pointer;" data-name="close_snippet">X</a>
+	     <span style="float:right">
+		     <a class="command ui-button delete" data-name="delete_snippet"></a><a class="command ui-button close" data-name="close_snippet"></a>
+             </span>
                      <h1>
-                       <span class='snippetView' data-field="title" data-format="text"></span>
-                     </h1>
+			     <span class='snippetView' data-field="title" data-format="text"></span>
+		     </h1>
                      <span class='snippetView' data-field="text" data-format="html"
                            data-class="snippet_body"></span>
     </div>
@@ -281,7 +283,8 @@
                    <h2>Mandatory Parts</h2>
                    <table class="listTable">
                     <tbody><tr data-view>
-                       <td class="valueCol top link" data-show="literal" data-content="title"
+			    <td class="valueCol top link removable" data-show="literal"
+				data-property="usdl:hasPartMandatory" data-content="title" data-subject="o"
                            data-attribute-name="data-parameter" data-attribute="part"
                            data-link-target="Service" >
                        </td>
@@ -299,8 +302,8 @@
                    <h2>Optional Parts</h2>
                    <table class="listTable">
                     <tbod><tr data-view>
-                       <td class="valueCol top link" data-show="literal" data-content="title"
-                           data-attribute-name="data-parameter" data-attribute="part"
+                       <td class="valueCol top link removable" data-show="literal" data-content="title"
+                           data-property="usdl:hasPartOptional" data-attribute-name="data-parameter" data-attribute="part"
                            data-link-target="Service" >
                        </td>
                     </tr></tbody>
@@ -489,8 +492,8 @@
                              <tbody class="lens"
                                     data-query="?o usdl:hasServiceModel ?model . ?model dcterms:title ?mtitle">
                                <tr data-view>
-                                 <td class="valueCol top link" data-show="literal" data-content="mtitle" 
-                                     data-attribute-name="data-parameter" data-attribute="model"
+                                 <td class="valueCol top link removable" data-show="literal" data-content="mtitle" 
+                                     data-property="usdl:hasServiceModel" data-attribute-name="data-parameter" data-attribute="model"
                                      data-link-target="Service" data-lang="en"></td>
                                </tr>
                              </tbody>
@@ -519,8 +522,8 @@
                     <tbody class="lens"
                            data-query="?o usdl:utilizedResource ?a. ?a rdf:type blueprint:Artefact. ?a dcterms:title ?title">
                      <tr data-view>
-                       <td class="valueCol top link" data-show="literal" data-content="title"
-                           data-attribute-name="data-parameter" data-attribute="a"
+                       <td class="valueCol top link removable" data-show="literal" data-content="title"
+                           data-property="usdl:utilizedResource" data-attribute-name="data-parameter" data-attribute="a"
                            data-link-target="Artefact">
                        </td>
                      </tr></tbody>
@@ -529,7 +532,7 @@
                        <td class="propertyCol top addLink"
                            data-template="artefact.n3"
                            data-resource-type="blueprint:Artefact"
-                           data-property="usdl:utilizedResource"
+                          data-property="usdl:utilizedResource" 
                            data-link-target="Artefact">Add artefact ... </td>
                      </tr></tfoot>
                    </table>
@@ -546,7 +549,7 @@
                     <tbody class="lens"
                            data-query="?p rdf:type gr:BusinessEntity . ?p gr:legalName ?title">
                      <tr data-view>
-                       <td class="valueCol top link" data-show="literal" data-content="title"
+                       <td class="valueCol top link removable" data-show="literal" data-content="title"
                            data-attribute-name="data-parameter" data-attribute="p"
                            data-link-target="Provider">
                        </td>
@@ -619,7 +622,7 @@
                        <td class="propertyCol top right">Name</td>
                        <td class="valueCol top textEdit" data-show="literal"
                            placeholder="Enter name ..." data-view
-                           data-content="name" data-property="foaf:name"></td>
+                           data-content="name" data-property="gr:legalName"></td>
                     </tr>
                     <tr>
                        <td class="propertyCol top right">Legal Form</td>
@@ -784,8 +787,8 @@
             <div class="swipe">
                    <table class="listTable">
                     <tbody><tr data-view>
-                       <td class="valueCol top link" data-show="literal" data-content="title"
-                           data-attribute-name="data-parameter" data-attribute="interaction"
+                       <td class="valueCol top link removable" data-show="literal" data-content="title"
+                           data-property="usdl:hasInteraction" data-attribute-name="data-parameter" data-attribute="interaction"
                            data-link-target="Interaction" >
                        </td>
                     </tr></tbody>
@@ -841,15 +844,15 @@
                   data-query="?o usdl:receives ?input. ?input rdfs:label ?label">
                    <table class="propertyTable">
                     <tbody><tr data-view>
-                       <td class="valueCol top link" data-show="literal" data-content="label"
+                       <td class="valueCol top link removable" data-show="literal" data-content="label"
                            data-attribute-name="data-parameter" data-attribute="input"
-                           data-link-target="Parameter">
+                           data-property="usdl:receives" data-link-target="Parameter">
                        </td>
                     </tr></tbody>
                     <tfoot><tr>
                        <td class="propertyCol top addObject"
                            data-template="parameter.n3" 
-                           data-property="usdl:receives" data-resource-type="usdl:Parameter"
+                          data-property="usdl:receives" data-resource-type="usdl:Parameter" 
                            data-link-target="Parameter">Add ... </td>
                     </tr></tfoot>
                    </table>
@@ -864,8 +867,8 @@
                   data-query="?o usdl:yields ?output. ?output rdfs:label ?label">
                    <table class="propertyTable">
                     <tbody><tr data-view>
-                       <td class="valueCol top link" data-show="literal" data-content="label"
-                            data-property="rdfs:label"
+                       <td class="valueCol top link removable" data-show="literal" data-content="label"
+                            data-property="usdl:yields" 
                             data-attribute-name="data-parameter" data-attribute="output"
                             data-link-target="Parameter">
                        </td>
@@ -922,9 +925,9 @@
                     <tbody class="lens"
                            data-query="?p rdf:type sla:ServiceLevelProfile . (?p dcterms:title ?title)">
                      <tr data-view>
-                       <td class="valueCol top link" data-show="literal" data-content="title"
+                       <td class="valueCol top link removable" data-show="literal" data-content="title"
                            data-attribute-name="data-parameter" data-attribute="p"
-                           data-link-target="ServiceLevelProfileElement">
+                           data-property="sla:hasServiceLevelProfile" data-link-target="ServiceLevelProfileElement">
                        </td>
                      </tr></tbody>
                     <tfoot>
@@ -947,8 +950,8 @@
                     <tbody class="lens"
                            data-query="?o sla:hasServiceLevelProfile ?slp. (?slp dcterms:title ?title)">
                      <tr data-view>
-                       <td class="valueCol top link" data-show="literal" data-content="title"
-                           data-attribute-name="data-parameter" data-attribute="slp"
+                       <td class="valueCol top link removable" data-show="literal" data-content="title"
+                           data-attribute-name="data-parameter" data-attribute="slp" data-property="sla:hasServiceLevelProfile"
                            data-link-target="ServiceLevelProfileElement">
                        </td>
                      </tr></tbody>
@@ -1102,9 +1105,9 @@
                   data-query="?o sla:hasServiceLevel ?sl. ?sl dcterms:title ?title">
                    <table class="listTable">
                     <tbody><tr data-view>
-                       <td class="valueCol top link" data-show="literal" data-content="title"
+                       <td class="valueCol top link removable" data-show="literal" data-content="title"
                            data-attribute-name="data-parameter" data-attribute="sl"
-                           data-link-target="ServiceLevel" >
+                           data-property="sla:hasServiceLevel" data-link-target="ServiceLevel" >
                        </td>
                     </tr></tbody>
                     <tfoot><tr>
@@ -1125,9 +1128,9 @@
                   data-query="?o sla:hasVariable ?slv. ?slv rdfs:label ?label">
                    <table class="listTable">
                     <tbody><tr data-view>
-                       <td class="valueCol top link" data-show="literal" data-content="label"
+                       <td class="valueCol top link removable" data-show="literal" data-content="label"
                            data-attribute-name="data-parameter" data-attribute="slv"
-                           data-link-target="Variable" >
+                           data-property="sla:hasVariable" data-link-target="Variable" >
                        </td>
                     </tr></tbody>
                     <tfoot><tr>
@@ -1148,9 +1151,9 @@
                   data-query="?o gr:quantitativeProductOrServiceProperty ?slv . ?slv rdfs:label ?label">
                    <table class="listTable">
                     <tbody><tr data-view>
-                       <td class="valueCol top link" data-show="literal" data-content="label"
+                       <td class="valueCol top link removable" data-show="literal" data-content="label"
                            data-attribute-name="data-parameter" data-attribute="slv"
-                           data-link-target="QuantitativeProperty" >
+                           data-property="gr:quantitativeProductOrServiceProperty" data-link-target="QuantitativeProperty" >
                        </td>
                     </tr></tbody>
                     <tfoot><tr>
@@ -1172,9 +1175,9 @@
                     <tbody class="lens"
                            data-query="?offering usdl:includes ?o . ?offering usdl:hasSecurityProfile ?slp. (?slp dcterms:title ?title)">
                      <tr data-view>
-                       <td class="valueCol top link" data-show="literal" data-content="title"
+                       <td class="valueCol top link removable" data-show="literal" data-content="title"
                            data-attribute-name="data-parameter" data-attribute="slp"
-                           data-link-target="SecurityProfileElement">
+                           data-property="usdl:hasSecurityProfile" data-link-target="SecurityProfileElement">
                        </td>
                      </tr></tbody>
                     <tfoot>
@@ -1182,7 +1185,7 @@
                        <td class="propertyCol top addObject"
                            data-template="securityprofile.n3"
                            data-resource-type="sec:SecurityProfile"
-                           data-property="usdl:hasSecurityProfile"
+                          data-property="usdl:hasSecurityProfile" 
                            data-link-target="SecurityProfileElement">Add security profile ... </td>
                      </tr></tfoot>
                    </table>
@@ -1198,16 +1201,16 @@
                     <tbody class="lens"
                            data-query="?o usdl:hasSecurityProfile ?slp. (?slp dcterms:title ?title)">
                      <tr data-view>
-                       <td class="valueCol top link" data-show="literal" data-content="title"
+                       <td class="valueCol top link removable" data-show="literal" data-content="title"
                            data-attribute-name="data-parameter" data-attribute="slp"
-                           data-link-target="SecurityProfileElement">
+                           data-property="usdl:hasSecurityProfile" data-link-target="SecurityProfileElement">
                        </td>
                      </tr></tbody>
                     <tfoot>
                      <tr>
                        <td class="propertyCol top addLink"
                            data-template="securityprofile.n3"
-                           data-resource-type="sec:SecurityProfile" data-property="usdl:hasSecurityProfile"
+                           data-resource-type="sec:SecurityProfile"data-property="usdl:hasSecurityProfile" 
                            data-link-target="SecurityProfileElement">Add security profile ... </td>
                      </tr></tfoot>
                    </table>
@@ -1246,9 +1249,9 @@
                   data-query="?o sec:hasSecurityGoal ?sg. ?sg dcterms:title ?title">
                    <table class="listTable">
                     <tbody><tr data-view>
-                       <td class="valueCol top link" data-show="literal" data-content="title"
+                       <td class="valueCol top link removable" data-show="literal" data-content="title"
                            data-attribute-name="data-parameter" data-attribute="sg"
-                           data-link-target="SecurityGoal" >
+                           data-property="sec:hasSecurityGoal" data-link-target="SecurityGoal" >
                        </td>
                     </tr></tbody>
                     <tfoot><tr>
@@ -1269,9 +1272,9 @@
                   data-query="?o sec:hasSecurityMeasure ?sm. ?sm dcterms:title ?title">
                    <table class="listTable">
                     <tbody><tr data-view>
-                       <td class="valueCol top link" data-show="literal" data-content="title"
+                       <td class="valueCol top link removable" data-show="literal" data-content="title"
                            data-attribute-name="data-parameter" data-attribute="sm"
-                           data-link-target="SecurityMeasure" >
+                           data-property="sec:hasSecurityMeasure" data-link-target="SecurityMeasure" >
                        </td>
                     </tr></tbody>
                     <tfoot><tr>
@@ -1333,9 +1336,9 @@
                   data-query="?o usdl:hasLegalCondition ?condition. ?condition dcterms:title ?title">
                    <table class="listTable">
                     <tbody><tr data-view>
-                       <td class="valueCol top link" data-show="literal" data-content="title"
+                       <td class="valueCol top link removable" data-show="literal" data-content="title"
                            data-attribute-name="data-parameter" data-attribute="condition"
-                           data-link-target="LegalCondition" >
+                           data-property="usdl:hasLegalCondition" data-link-target="LegalCondition" >
                        </td>
                     </tr></tbody>
                     <tfoot><tr>
@@ -1403,9 +1406,9 @@
                   data-query="?o legal:hasClause ?clause. ?clause legal:name ?name">
                    <table class="listTable">
                     <tbody><tr data-view>
-                       <td class="valueCol top link" data-show="literal" data-content="name"
+                       <td class="valueCol top link removable" data-show="literal" data-content="name"
                            data-attribute-name="data-parameter" data-attribute="clause"
-                           data-link-target="Clause" >
+                           data-property="legal:hasClause" data-link-target="Clause" >
                        </td>
                     </tr></tbody>
                     <tfoot><tr>
@@ -1426,7 +1429,7 @@
                   data-query="?offering rdf:type usdl:ServiceOffering . (?offering dcterms:title ?title)">
                    <table class="listTable">
                     <tbody><tr data-view>
-                       <td class="valueCol top link" data-show="literal" data-content="title"
+                       <td class="valueCol top link removable" data-show="literal" data-content="title"
                            data-attribute-name="data-parameter" data-attribute="offering"
                            data-link-target="ServiceOffering">
                        </td>
@@ -1502,15 +1505,16 @@
                   data-query="?p gr:offers ?o. ?p gr:legalName ?title">
                    <table class="listTable">
                     <tbody><tr data-view>
-                       <td class="valueCol top link" data-show="literal" data-content="title"
+                       <td class="valueCol top link removable" data-show="literal" data-content="title"
                            data-attribute-name="data-parameter" data-attribute="p"
-                           data-link-target="Provider" >
+                           data-inverse-property="gr:offers" data-link-target="Provider" >
                        </td>
                     </tr></tbody>
                     <tfoot><tr>
                        <td class="propertyCol top addLink"
                            data-template="provider.n3" 
-			   data-inverse-property="gr:offers" data-resource-type="gr:BusinessEntity"
+			   data-resource-type="gr:BusinessEntity"
+			   data-inverse-property="gr:offers"
 			   data-title-property="gr:legalName"
                            data-link-target="Provider">Add offerer ... </td>
                     </tr></tfoot>
@@ -1526,9 +1530,9 @@
                   data-query="?o usdl:includes ?service. ?service dcterms:title ?title">
                    <table class="listTable">
                     <tbody><tr data-view>
-                       <td class="valueCol top link" data-show="literal" data-content="title"
+                       <td class="valueCol top link removable" data-show="literal" data-content="title"
                            data-attribute-name="data-parameter" data-attribute="service"
-                           data-link-target="Service" >
+                           data-property="usdl:includes" data-link-target="Service" >
                        </td>
                     </tr></tbody>
                     <tfoot><tr>
@@ -1549,9 +1553,9 @@
                   data-query="?o usdl:hasPricePlan ?priceplan. ?priceplan dcterms:title ?title">
                    <table class="listTable">
                     <tbody><tr data-view>
-                       <td class="valueCol top link" data-show="literal" data-content="title"
+                       <td class="valueCol top link removable" data-show="literal" data-content="title"
                            data-attribute-name="data-parameter" data-attribute="priceplan"
-                           data-link-target="PricePlan" >
+                           data-property="usdl:hasPricePlan" data-link-target="PricePlan" >
                        </td>
                     </tr></tbody>
                     <tfoot><tr>
@@ -1605,9 +1609,9 @@
                   data-query="?o price:hasPriceComponent ?component. ?component dcterms:title ?title">
                    <table class="listTable">
                     <tbody><tr data-view>
-                       <td class="valueCol top link" data-show="literal" data-content="title"
+                       <td class="valueCol top link removable" data-show="literal" data-content="title"
                            data-attribute-name="data-parameter" data-attribute="component"
-                           data-link-target="PriceComponent" >
+                           data-property="price:hasPriceComponent" data-link-target="PriceComponent" >
                        </td>
                     </tr></tbody>
                     <tfoot><tr>
@@ -1673,9 +1677,9 @@
                   data-query="?o price:hasTax ?tax. ?tax dcterms:title ?title">
                    <table class="listTable">
                     <tbody><tr data-view>
-                       <td class="valueCol top link" data-show="literal" data-content="title"
+                       <td class="valueCol top link removable" data-show="literal" data-content="title"
                            data-attribute-name="data-parameter" data-attribute="tax"
-                           data-link-target="Tax" >
+                           data-property="price:hasTax" data-link-target="Tax" >
                        </td>
                     </tr></tbody>
                     <tfoot><tr>

@@ -293,14 +293,44 @@ table.display {
 }
 
 .ui-button.delete {
-    background-image: url("../images/Delete32.png");
+    background-image: url("../images/icon_delete.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 1.2em;
+    height: 1.3em;
+    width: 1em;
+    height: 1em;
+}
+
+.ui-button.remove {
+    background-image: url("../images/dlg-close.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: 1em;
-    top: 0.1em;
-    display: none;
-    margin: 0.3em;
+    height: 1em;
     width: 1em;
+    height: 1em;
+    top:
+    float: right;
+    padding-left: 0.5em;
+    padding-top: 0.5em;
+}
+
+.link.removable div.remove {
+    visibility: hidden;
+}
+
+.link.removable:hover div.remove {
+    visibility: visible;
+}
+
+.ui-button.close {
+    background-image: url("../images/dlg-close.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 1.5em;
+    width: 1em;
+    height: 1em;
 }
 
 .mainMenu li:hover .delete {

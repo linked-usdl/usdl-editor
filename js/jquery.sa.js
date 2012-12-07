@@ -574,9 +574,36 @@ $sa.actions.snippet_close = function(target,e) {
     }
 }
 
+$sa.actions.snippet_delete = function(target,e) {
+    var elemSnippet = target.closest(".snippetFrame")
+    if (elemSnippet) {
+	opts = elemSnippet.data("options")
+        var subject = opts?encodeSubject(opts.param):undefined
+	if (subject) {
+           // delete the fucking subject and all properties linking to it
+           if (subject != "<>") {
+              var triples = document.kb.about(subject)
+              triples.each(function () {
+		             var value = this.value.toString()
+                             var triple = subject+' <'+this.property.value+ '> '+value 
+                             document.kb.remove(triple)
+                           })
+	   }
+	   if (subject == "<"+params.subject+">")
+              params.subject = null;
+           document.kb.setDirty = true
+//           $sa.store.registerModification(snippet)
+           $sa.store.registerModification("Service")
+	} 
+
+        elemSnippet.hide("drop",{direction: "down"},500,function() {elemSnippet.remove() })
+    }
+}
+
 $sa.command = {};
 $sa.command.commands = {
-    close_snippet: {text: "Close this card", action: $sa.actions.snippet_close}
+    close_snippet: {text: "Close this card", action: $sa.actions.snippet_close},
+    delete_snippet: {text: "Delete this resource", action: $sa.actions.snippet_delete}
 };
 
 
@@ -608,27 +635,6 @@ $sa.command.commands = {
                       })
 //                      document.kb = document.kb.except(triples) // we should all ?s ?p <target> too?
                       document.kb.setDirty = true
-/*
-                      document.kb.prefix('foaf', 'http://xmlns.com/foaf/0.1/')
-                                .prefix('rdf', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#')
-                                .prefix('rdfs', 'http://www.w3.org/2000/01/rdf-schema#')
-                                .prefix('msm', 'http://cms-wg.sti2.org/ns/minimal-service-model#')
-                                .prefix('owl', 'http://www.w3.org/2002/07/owl#')
-                                .prefix('dcterms', 'http://purl.org/dc/terms/')
-                                .prefix('usdl', 'http://www.linked-usdl.org/ns/usdl-core#')
-                                .prefix('legal', 'http://www.linked-usdl.org/ns/usdl-legal#')
-                                .prefix('price', 'http://www.linked-usdl.org/ns/usdl-pricing#')
-                                .prefix('sla', 'http://www.linked-usdl.org/ns/usdl-sla#')
-                                .prefix('blueprint', 'http://bizweb.sap.com/TR/blueprint#')
-                                .prefix('vcard', 'http://www.w3.org/2006/vcard/ns#')
-                                .prefix('xsd', 'http://www.w3.org/2001/XMLSchema#"')
-                                .prefix('ctag', 'http://commontag.org/ns#')
-                                .prefix('org', 'http://www.w3.org/ns/org#')
-                                .prefix('skos', 'http://www.w3.org/2004/02/skos/core#')
-                                .prefix('time', 'http://www.w3.org/2006/time#')
-                                .prefix('gr', 'http://purl.org/goodrelations/v1#')
-                                .prefix('doap', 'http://usefulinc.com/ns/doap#')
-*/
                       $("#columnStory .snippetFrame").hide("puff")
                       $sa.store.registerModification(snippet)
                    }
@@ -639,8 +645,30 @@ $sa.command.commands = {
              var subj = params.subject //$.cookie('subject')
              var param = $(this).attr("data-parameter")
              if (subj && (subj == param)) $(this).parent().addClass('ui-selected')
-             $(this).addClass('macro')
+//             $(this).addClass('macro')
              if ($(this).text() == "") $(this).text($(this).attr("placeholder"))
+// add a remove button here
+             if ($(this).hasClass("removable")) {
+                var rembtn = $("<div/>").addClass("ui-button remove")
+		                        .click(function () {
+                                                var snippetframe =  $(this).parents('.dataTag:first')
+                                                var opt = snippetframe.data('options')
+                                                var subject = opt?encodeSubject(opt.param):undefined
+						var subj = $(this).parent().attr("data-subject")
+						subj = (subj)?subj:subject
+						var prop = $(this).parent().attr("data-property")
+						var invprop = $(this).parent().attr("data-inverse-property")
+						if (subj && param && (prop||invprop)) {
+				                   if (prop) 
+                                                      var triple = "<"+subj+"> "+prop+" <"+param+">"
+						   else
+                                                      var triple = "<"+param+"> "+invprop+" <"+subj+">"
+						   document.kb.remove(triple)
+                                                   $sa.store.registerModification("Service")
+						}
+					})
+		                        .appendTo(this)
+	     }
              $(this).click(function(e) {
                              var target = $(this).attr("data-link-target")
                              var options = {jOrigin: this}
