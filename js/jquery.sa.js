@@ -580,7 +580,13 @@ $sa.actions.snippet_delete = function(target,e) {
 	opts = elemSnippet.data("options")
         var subject = opts?encodeSubject(opts.param):undefined
 	if (subject) {
-           // delete the fucking subject and all properties linking to it
+           // delete all triples with this subject as object
+	   var res = document.kb.where("?s ?p "+subject)
+	   res.each(function () {
+	     var triple = "<"+this.s.value.toString()+"> <"+this.p.value.toString()+"> "+subject
+	     document.kb.remove(triple)
+	   })
+           // delete all triples with this subject 
            if (subject != "<>") {
               var triples = document.kb.about(subject)
               triples.each(function () {
