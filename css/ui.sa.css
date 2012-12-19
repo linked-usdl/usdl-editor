@@ -310,7 +310,8 @@ table.display {
     height: 1em;
     width: 1em;
     height: 1em;
-    top:
+    top: 0.1em;
+    right: 1em;
     float: right;
     padding-left: 0.5em;
     padding-top: 0.5em;

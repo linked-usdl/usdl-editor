@@ -310,7 +310,7 @@ table.display {
     height: 1em;
     width: 1em;
     height: 1em;
-    top:
+    top: 0.1em;
     float: right;
     padding-left: 0.5em;
     padding-top: 0.5em;
@@ -325,7 +325,7 @@ table.display {
 }
 
 .ui-button.close {
-    background-image: url("../images/dlg-close.png");
+    background-image: url("../images/icon_close.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: 1.5em;

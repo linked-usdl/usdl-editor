@@ -574,42 +574,18 @@ $sa.actions.snippet_close = function(target,e) {
     }
 }
 
-$sa.actions.snippet_delete = function(target,e) {
-    var elemSnippet = target.closest(".snippetFrame")
-    if (elemSnippet) {
-	opts = elemSnippet.data("options")
-        var subject = opts?encodeSubject(opts.param):undefined
-	if (subject) {
-           // delete all triples with this subject as object
-	   var res = document.kb.where("?s ?p "+subject)
-	   res.each(function () {
-	     var triple = "<"+this.s.value.toString()+"> <"+this.p.value.toString()+"> "+subject
-	     document.kb.remove(triple)
-	   })
-           // delete all triples with this subject 
-           if (subject != "<>") {
-              var triples = document.kb.about(subject)
-              triples.each(function () {
-		             var value = this.value.toString()
-                             var triple = subject+' <'+this.property.value+ '> '+value 
-                             document.kb.remove(triple)
-                           })
-	   }
-	   if (subject == "<"+params.subject+">")
-              params.subject = null;
-           document.kb.setDirty = true
-//           $sa.store.registerModification(snippet)
-           $sa.store.registerModification("Service")
-	} 
+      $('.close').livequery(function () {
+             $(this).click(function(e) {
+	             var elemSnippet = $(this).closest(".snippetFrame")
+                     if (elemSnippet) {
+                         elemSnippet.hide("drop",{direction: "down"},500,function() {elemSnippet.remove() })
+                     }
+                 })
+      })
 
-        elemSnippet.hide("drop",{direction: "down"},500,function() {elemSnippet.remove() })
-    }
-}
 
 $sa.command = {};
 $sa.command.commands = {
-    close_snippet: {text: "Close this card", action: $sa.actions.snippet_close},
-    delete_snippet: {text: "Delete this resource", action: $sa.actions.snippet_delete}
 };
 
 
@@ -630,31 +606,38 @@ $sa.command.commands = {
 
         $('.delete').livequery(function () {
              $(this).click(function(e) {
-                   var snippet = $(this).parents(".snippetFrame:first")
-		   var p =  $(this).prev()
-                   var target = p.attr("data-parameter")
+                   var snippet = $(this).parents(".dataTag:first")
+//		   var p =  $(this).prev()
+                   var target = snippet.attr("data-parameter")
+	           if (!target) {
+		      var opts = snippet.data("options")
+                      target = opts?encodeSubject(opts.param):undefined
+		   }
                    if (target) {
-		      var triples = document.kb.about('<'+target+'>')
+		      target = encodeSubject(target)
+                      // delete all triples with this subject as object
+	              var res = document.kb.where("?s ?p "+target)
+	              res.each(function () {
+	                var triple = "<"+this.s.value.toString()+"> <"+this.p.value.toString()+"> "+target
+	                document.kb.remove(triple)
+	              })
+		      var triples = document.kb.about(target)
                       triples.each(function () {
-                          var triple = '<'+target+'> <'+this.property.value+ '> <' + this.value.value + '>'
+                          var triple = target+' <'+this.property.value+ '> <' + this.value.value + '>'
                           document.kb.remove(triple)
                       })
 //                      document.kb = document.kb.except(triples) // we should all ?s ?p <target> too?
                       document.kb.setDirty = true
-                      $("#columnStory .snippetFrame").hide("puff")
-                      $sa.store.registerModification(snippet)
+                      $sa.store.registerModification("Properties")
                    }
+                 if (snippet.hasClass("snippetFrame")) {
+//                    $("#columnStory .snippetFrame").hide("puff")
+		    snippet.hide("puff",{direction: "down"},500,function() {snippet.remove() })
+		 }
 	     })
 	})
 
-        $('.link').livequery(function () {
-             var subj = params.subject //$.cookie('subject')
-             var param = $(this).attr("data-parameter")
-             if (subj && (subj == param)) $(this).parent().addClass('ui-selected')
-//             $(this).addClass('macro')
-             if ($(this).text() == "") $(this).text($(this).attr("placeholder"))
-// add a remove button here
-             if ($(this).hasClass("removable")) {
+        $('.removable').livequery(function () {
                 var rembtn = $("<div/>").addClass("ui-button remove")
 		                        .click(function () {
                                                 var snippetframe =  $(this).parents('.dataTag:first')
@@ -664,6 +647,7 @@ $sa.command.commands = {
 						subj = (subj)?subj:subject
 						var prop = $(this).parent().attr("data-property")
 						var invprop = $(this).parent().attr("data-inverse-property")
+                                                var param = $(this).parent().attr("data-parameter")
 						if (subj && param && (prop||invprop)) {
 				                   if (prop) 
                                                       var triple = "<"+subj+"> "+prop+" <"+param+">"
@@ -674,7 +658,15 @@ $sa.command.commands = {
 						}
 					})
 		                        .appendTo(this)
-	     }
+	     })
+
+        $('.link').livequery(function () {
+             var subj = params.subject //$.cookie('subject')
+             var param = $(this).attr("data-parameter")
+             if (subj && (subj == param)) $(this).parent().addClass('ui-selected')
+             $(this).addClass('macro')
+             if ($(this).text() == "") $(this).text($(this).attr("placeholder"))
+// add a remove button here
              $(this).click(function(e) {
                              var target = $(this).attr("data-link-target")
                              var options = {jOrigin: this}

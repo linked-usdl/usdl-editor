@@ -158,7 +158,7 @@
     <h1 class="snippet_title" property="dcterms:title">core.templates.snippet.default</h1>
     <div class="snippet_body" property="snippet:body">
 	     <span style="float:right">
-		     <a class="command ui-button delete" data-name="delete_snippet"></a><a class="command ui-button close" data-name="close_snippet"></a>
+		     <a class="ui-button delete" data-name="delete_snippet"></a><a class="ui-button close" data-name="close_snippet"></a>
              </span>
                      <h1>
 			     <span class='snippetView' data-field="title" data-format="text"></span>
@@ -622,7 +622,7 @@
                        <td class="propertyCol top right">Name</td>
                        <td class="valueCol top textEdit" data-show="literal"
                            placeholder="Enter name ..." data-view
-                           data-content="name" data-property="foaf:name"></td>
+                           data-content="name" data-property="gr:legalName"></td>
                     </tr>
                     <tr>
                        <td class="propertyCol top right">Legal Form</td>
@@ -718,16 +718,17 @@
                    <td class="valueCol top">
                    <table width="100%" style="margin: 0; padding: 0;">
                          <tr>
-                            <td class="top propertyCol" style="border: none;text-align:right;" width="25%">Value</td>
-                            <td class="top propertyCol" style="border: none;text-align:right;" width="25%">Minimum</td>
-                            <td class="top propertyCol" style="border: none;text-align:right;" width="25%">Maximum</td>
-                            <td class="top propertyCol" style="border: none;text-align:right;" width="25%">Unit</td>
+                            <td class="top propertyCol" style="border: none;text-align:right;" width="20%">Value</td>
+                            <td class="top propertyCol" style="border: none;text-align:right;" width="20%">Minimum</td>
+                            <td class="top propertyCol" style="border: none;text-align:right;" width="20%">Maximum</td>
+                            <td class="top propertyCol" style="border: none;text-align:right;" width="35%">Unit</td>
+                            <td class="top propertyCol" style="float:right; padding-top: 0px;" width="5%">&nbsp;</td>
                     </tr>
                    </table>
                    </td>
                  </tr>
-                     <tr data-view>
-                       <td class="propertyCol top" data-show="literal" data-content="label"></td>
+                     <tr data-view >
+                       <td class="propertyCol top" data-property="prop"data-show="literal" data-content="label"></td>
                        <td class="valueCol top transclude" 
                            style="padding: 0.3em;"
                            data-attribute="qv" data-attribute-name="data-parameter"
@@ -758,24 +759,25 @@
 <div class="snippet" typeof="snippet:Snippet" id="QuantitativeValue">
 	<h1 class="snippet_title" property="dcterms:title">Quantitative Value</h1>
 	<div class="snippet_body" property="snippet:body">
-                   <table class="lens" width="100%" style="margin: 0; padding: 0;"
-                          style="padding: 0;"
+                   <table class="lens" width="100%" style="margin: 0; padding: 0; padding: 0; float: left;"
                           data-query="?o rdf:type ?t . (?o gr:hasValue ?val) . (?o gr:hasMinValue ?minval) . (?o gr:hasMaxValue ?maxval) . (?o gr:hasUnitOfMeasurement ?unit)">
                     <tr>
                        <td class="valueCol top textEdit rightInput" data-show="literal" style="border: none; padding:0; text-align:right;"
-                           placeholder="?" width="25%"
+                           placeholder="?" width="20%"
                            data-content="val" data-view data-property="gr:hasValue"></td>
                        <td class="valueCol top textEdit rightInput" data-show="literal"
-                           placeholder="?" width="25%" style="border: none; padding:0; text-align:right;"
+                           placeholder="?" width="20%" style="border: none; padding:0; text-align:right;"
                            data-content="minval" data-view data-property="gr:hasMinValue"></td>
                        <td class="valueCol top textEdit rightInput" data-show="literal"
-                           placeholder="?" width="25%" style="border: none; padding:0; text-align:right;"
+                           placeholder="?" width="20%" style="border: none; padding:0; text-align:right;"
                            data-content="maxval" data-view data-property="gr:hasMaxValue"></td>
                        <td class="valueCol top textEdit rightInput" data-show="literal"
-                           placeholder="?" width="25%" style="border: none; padding:0; text-align:right;"
-                           data-content="unit" data-view data-property="gr:hasUnitOfMeasurement"></td>
+                           placeholder="?" style="border: none; padding:0; text-align:right;"
+                           data-content="unit" width="35%" data-view data-property="gr:hasUnitOfMeasurement"></td>
+                       <td class="top ui-button right delete" style="float:right; padding: 0px;" data-view ></td>
                     </tr>
                    </table>
+                       <!--div class="top ui-button right delete" style="width:2em;float:right"></div-->
         </div>
 </div>
 
