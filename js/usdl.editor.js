@@ -233,7 +233,8 @@ function dirname(loc) {
                                  e.preventDefault();
 				 var dt = e.originalEvent.dataTransfer
 			         var types = dt.types
-			         if ($.inArray("application/x-moz-file", types) != -1) {
+			         if (($.inArray("application/x-moz-file", types) != -1) ||
+                                     ($.inArray("Files", types) != -1)) {
                                    var files = dt.files
                                    var reader = new FileReader();
                                    reader.onload = function (event) {
