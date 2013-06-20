@@ -413,6 +413,7 @@
       var s = triple.subject,
         p = triple.property,
         o = triple.object;
+      
       if (databank.union === undefined) {
         if (databank.queries[s] !== undefined) {
           if (databank.queries[s][p] !== undefined) {
@@ -1533,10 +1534,12 @@
         ptriples.splice($.inArray(triple, ptriples), 1);
       }
       if (triple.object.type === 'uri' || triple.object.type === 'bnode') {
+    	  
         otriples = this.objectIndex[triple.object];
         if (otriples !== undefined) {
           otriples.splice($.inArray(triple, otriples), 1);
         }
+
       }
       removeFromDatabankQueries(this, triple);
       return this;
