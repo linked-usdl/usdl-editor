@@ -179,41 +179,15 @@ data-class="snippet_body"></span>
 </div>
 </div>
 
-<div class="snippet" typeof="snippet:Snippet" id="SolutionClassification">
-<h1 class="snippet_title" property="dcterms:title">Solution Classification</h1>
+<div class="snippet" typeof="snippet:Snippet" id="Classification">
+<h1 class="snippet_title" property="dcterms:title">Classification</h1>
 <div class="snippet_body" property="snippet:body">
 <span class="lens" 
-data-query="?o dcterms:subject ?classification. ?classification skos:inScheme blueprint:SolutionType. (?classification rdfs:label ?soltype)">
-<div class="selectEdit"
-options="Business Solution,Business Service,Mobile Application"
-data-property="rdfs:label" data-subject="classification"
-data-show="literal" data-content="soltype" data-view></div>
-</span>
-</div>
-</div>
-
-<div class="snippet" typeof="snippet:Snippet" id="BusinessAreaClassification">
-<h1 class="snippet_title" property="dcterms:title">Business Area Classification</h1>
-<div class="snippet_body" property="snippet:body">
-<span class="lens" 
-data-query="?o dcterms:subject ?classification. ?classification skos:inScheme blueprint:BusinessArea. (?classification rdfs:label ?batype)">
-<div class="selectEdit"
-options="Services,Development,Manufacturing&Warehouse,Communication&Information Exchange,Marketing,Distribution,Supply Chain Managment,Sales"
-data-property="rdfs:label" data-subject="classification"
-data-show="literal" data-content="batype" data-view></div>
-</span>
-</div>
-</div>
-
-<div class="snippet" typeof="snippet:Snippet" id="IndustryClassification">
-<h1 class="snippet_title" property="dcterms:title">Industry Classification</h1>
-<div class="snippet_body" property="snippet:body">
-<span class="lens" 
-data-query="?o dcterms:subject ?classification. ?classification skos:inScheme blueprint:Industry. (?classification rdfs:label ?intype)">
+data-query="?o usdl:hasClassification ?classification. (?classification rdfs:label ?label)">
 <div class="selectEdit"
 options="Business services,Communication services,IT services,Construction and related engineering services,Distribution services,Educational services,Environmental services,Financial services,Healt-related and social services,Tourism and travel-related services,Recreational cultural and sporting services,Transport services,Other services"
 data-property="rdfs:label" data-subject="classification"
-data-show="literal" data-content="intype" data-view></div>
+data-show="literal" data-content="label" data-view></div>
 </span>
 </div>
 </div>
@@ -337,16 +311,6 @@ data-link-target="Service">Add optional part ... </td>
 </div>
 </div>
 
-<div class="snippet" typeof="snippet:Snippet" id="Resource">
-<h1 class="snippet_title" property="dcterms:title">Resource</h1>
-<div class="snippet_body" property="snippet:body">
-<div class="snippet_content smallCard">
-<div class="swipe">
-</div>
-</div>
-</div>
-</div>
-
 <div class="snippet" typeof="snippet:Snippet" id="About">
 <h1 class="snippet_title" property="dcterms:title">About this Description</h1>
 <div class="snippet_body" property="snippet:body">
@@ -454,17 +418,9 @@ data-show="literal" data-attribute="modified" data-attribute-name="value" value=
 data-defaults='{}'
 data-property="dcterms:modified" data-type="xsd:datetime"></td>
 </tr>
-<!--tr>
-<td class="propertyCol top right">Solution Type</td>
-<td class="valueCol top transclude" data-snippet="SolutionClassification" placeholder="Select solution type..."></td>
-</tr>
 <tr>
-<td class="propertyCol top right">Business Area</td>
-<td class="valueCol top transclude" data-snippet="BusinessAreaClassification"></td>
-</tr-->
-<tr>
-<td class="propertyCol top right">Industry</td>
-<td class="valueCol top transclude" data-snippet="IndustryClassification"></td>
+<td class="propertyCol top right">Classifiction</td>
+<td class="valueCol top transclude" data-snippet="Classification"></td>
 </tr>
 <tr>
 <td class="propertyCol top right">Abstract</td>
@@ -804,20 +760,20 @@ data-content="unit" width="35%" data-view data-property="gr:hasUnitOfMeasurement
 <h1 class="snippet_title" property="dcterms:title">Interactions</h1>
 <div class="snippet_body" property="snippet:body">
 <div class="snippet_content lens smallCard"
-data-query="?o usdl:hasInteraction ?interaction. ?interaction dcterms:title ?title">
+data-query="?o usdl:hasInteractionPoint ?interaction. ?interaction dcterms:title ?title">
 <div class="swipe">
 <table class="listTable">
 <tbody><tr data-view>
 <td class="valueCol top link removable" data-show="literal" data-content="title"
-data-property="usdl:hasInteraction" data-attribute-name="data-parameter" data-attribute="interaction"
+data-property="usdl:hasInteractionPoint" data-attribute-name="data-parameter" data-attribute="interaction"
 data-link-target="Interaction" >
 </td>
 </tr></tbody>
 <tfoot><tr>
 <td class="propertyCol top addObject"
 data-template="interaction.n3" 
-data-property="usdl:hasInteraction" data-resource-type="usdl:Interaction"
-data-link-target="Interaction">Add interaction ... </td>
+data-property="usdl:hasInteractionPoint" data-resource-type="usdl:InteractionPoint"
+data-link-target="Interaction">Add interaction point ... </td>
 </tr></tfoot>
 </table>
 </div>
@@ -826,10 +782,10 @@ data-link-target="Interaction">Add interaction ... </td>
 
 
 <div class="snippet" typeof="snippet:Snippet" id="Interaction">
-<h1 class="snippet_title" property="dcterms:title">Interaction</h1>
+<h1 class="snippet_title" property="dcterms:title">Interaction Point</h1>
 <div class="snippet_body" property="snippet:body">
 <div class="lens smallCard snippet_content"
-data-query="?o rdf:type usdl:Interaction. ?o dcterms:title ?title. (?o dcterms:description ?description) . (?o usdl:hasInterfaceOperation ?op)">
+data-query="?o rdf:type usdl:InteractionPoint. ?o dcterms:title ?title. (?o dcterms:description ?description) . (?o usdl:hasInterfaceOperation ?op)">
 <table class="propertyTable">
 <tr>
 <td class="propertyCol top right">Title</td>
@@ -844,16 +800,20 @@ data-format="html" placeholder="Enter description..."
 data-content="description" data-view data-property="dcterms:description"></td>
 </tr>
 <tr>
-<td class="propertyCol top right">Interface</td>
+<td class="propertyCol top right">Interface Operation</td>
 <td class="valueCol top uriEdit" data-show="uri"
 placeholder="Enter URL ..." data-view
-data-content="op" data-property="usdl:hasInterface"></td>
+data-content="op" data-property="usdl:hasInterfaceOperation"></td>
 </tr>
 </table>
 <h2>Receives</h2>
 <span class="transclude" data-snippet="ListInputs"></span>
 <h2>Yields</h2>
 <span class="transclude" data-snippet="ListOutputs"></span>
+<h2>Before</h2>
+<span class="transclude" data-snippet="Before"></span>
+<h2>After</h2>
+<span class="transclude" data-snippet="After"></span>
 </div>
 </div>
 </div>
@@ -867,14 +827,14 @@ data-query="?o usdl:receives ?input. ?input rdfs:label ?label">
 <tbody><tr data-view>
 <td class="valueCol top link removable" data-show="literal" data-content="label"
 data-attribute-name="data-parameter" data-attribute="input"
-data-property="usdl:receives" data-link-target="Parameter">
+data-property="usdl:receives" data-link-target="Resource">
 </td>
 </tr></tbody>
 <tfoot><tr>
 <td class="propertyCol top addObject"
-data-template="parameter.n3" 
-data-property="usdl:receives" data-resource-type="usdl:Parameter" 
-data-link-target="Parameter">Add ... </td>
+data-template="resource.n3" 
+data-property="usdl:receives" data-resource-type="rdf:Resource" 
+data-link-target="Resource">Add ... </td>
 </tr></tfoot>
 </table>
 </div>
@@ -891,25 +851,73 @@ data-query="?o usdl:yields ?output. ?output rdfs:label ?label">
 <td class="valueCol top link removable" data-show="literal" data-content="label"
 data-property="usdl:yields" 
 data-attribute-name="data-parameter" data-attribute="output"
-data-link-target="Parameter">
+data-link-target="Resource">
 </td>
 </tr></tbody>
 <tfoot><tr>
 <td class="propertyCol top addObject"
-data-template="parameter.n3" 
-data-property="usdl:yields" data-resource-type="usdl:Parameter"
-data-link-target="Parameter">Add ... </td>
+data-template="resource.n3" 
+data-property="usdl:yields" data-resource-type="usdl:Resource"
+data-link-target="Resource">Add ... </td>
 </tr></tfoot>
 </table>
 </div>
 </div>
 </div>
 
-<div class="snippet" typeof="snippet:Snippet" id="Parameter">
-<h1 class="snippet_title" property="dcterms:title">Parameter</h1>
+<div class="snippet" typeof="snippet:Snippet" id="Before">
+<h1 class="snippet_title" property="dcterms:title">Before</h1>
+<div class="snippet_body" property="snippet:body">
+<div class="lens"
+data-query="?o time:before ?before . ?before dcterms:title ?title">
+<table class="propertyTable">
+<tbody><tr data-view>
+<td class="valueCol top link removable" data-show="literal" data-content="title"
+data-property="time:before" 
+data-attribute-name="data-parameter" data-attribute="before"
+data-link-target="Interaction">
+</td>
+</tr></tbody>
+<tfoot><tr>
+<td class="propertyCol top addLink"
+data-template="interaction.n3" 
+data-property="time:before" data-resource-type="usdl:InteractionPoint"
+data-link-target="Interaction">Add ... </td>
+</tr></tfoot>
+</table>
+</div>
+</div>
+</div>
+
+<div class="snippet" typeof="snippet:Snippet" id="After">
+<h1 class="snippet_title" property="dcterms:title">After</h1>
+<div class="snippet_body" property="snippet:body">
+<div class="lens"
+data-query="?o time:after ?after . ?after dcterms:title ?title">
+<table class="propertyTable">
+<tbody><tr data-view>
+<td class="valueCol top link removable" data-show="literal" data-content="title"
+data-property="time:after" 
+data-attribute-name="data-parameter" data-attribute="after"
+data-link-target="Interaction">
+</td>
+</tr></tbody>
+<tfoot><tr>
+<td class="propertyCol top addLink"
+data-template="interaction.n3" 
+data-property="time:after" data-resource-type="usdl:InteractionPoint"
+data-link-target="Interaction">Add ... </td>
+</tr></tfoot>
+</table>
+</div>
+</div>
+</div>
+
+<div class="snippet" typeof="snippet:Snippet" id="Resource">
+<h1 class="snippet_title" property="dcterms:title">Resource</h1>
 <div class="snippet_body" property="snippet:body">
 <div class="snippet_content lens smallCard"
-data-query="?o rdfs:label ?label . (?o dcterms:description ?description). (?o usdl:hasInterfaceElement ?elem)"
+data-query="?o rdfs:label ?label . (?o dcterms:description ?description)"
 >
 <div class="swipe">
 <table class="propertyTable">
@@ -926,12 +934,6 @@ data-format="html" placeholder="Enter description..."
 data-content="description" data-view
 data-property="dcterms:description"></td>
 </tr>
-<!--tr>
-<td class="propertyCol top right">Interface Element</td>
-<td class="valueCol top uriEdit" data-show="uri"
-placeholder="Enter URL ..." data-view
-data-content="elem" data-property="usdl:hasInterfaceElement"></td>
-</tr-->
 </table>
 </div>
 </div>
@@ -1938,14 +1940,14 @@ data-parameter="mobile">Publish to Mobile App Store</button></center></td>
 @prefix wl: <http://www.wsmo.org/ns/wsmo-lite#> .
 @prefix http: <http://www.w3.org/2011/http#> .
 
-<#subject> a usdl:Interaction;
+<#subject> a usdl:InteractionPoint;
 dcterms:title ""@en ;
 dcterms:description ""@en.
 </script>
 </div>
 
-<div class="snippet" typeof="snippet:Snippet" id="parameter.n3">
-<h1 class="snippet_title" property="dcterms:title">parameter.n3</h1>
+<div class="snippet" typeof="snippet:Snippet" id="resource.n3">
+<h1 class="snippet_title" property="dcterms:title">resource.n3</h1>
 <script class="snippet_body" property="snippet:body" type="text/n3">
 @base <#baseurl> .
 @prefix ctag:    <http://commontag.org/ns#> .
@@ -1972,7 +1974,7 @@ dcterms:description ""@en.
 @prefix wl: <http://www.wsmo.org/ns/wsmo-lite#> .
 @prefix http: <http://www.w3.org/2011/http#> .
 
-<#subject> a usdl:Parameter;
+<#subject> a rdf:Resource;
 rdfs:label ""@en;
 dcterms:description ""@en.
 </script>
@@ -2358,58 +2360,6 @@ gr:hasUnitOfMeasurement "percent".
 </script>
 </div>
 
-<div class="snippet" typeof="snippet:Snippet" id="servicemodel.n3">
-<h1 class="snippet_title" property="dcterms:title">servicemodel.n3</h1>
-<script class="snippet_body" property="snippet:body" type="text/n3">
-@base <#baseurl> .
-@prefix ctag:    <http://commontag.org/ns#> .
-@prefix dcterms:  <http://purl.org/dc/terms/> .
-@prefix dctypes:  <http://purl.org/dc/dcmitype/> .
-@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
-@prefix gr:      <http://purl.org/goodrelations/v1#> .
-@prefix msm:     <http://cms-wg.sti2.org/ns/minimal-service-model#> .
-@prefix org:     <http://www.w3.org/ns/org#> .
-@prefix owl:     <http://www.w3.org/2002/07/owl#> .
-@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
-@prefix time:    <http://www.w3.org/2006/time#> .
-@prefix usdl:  <http://www.linked-usdl.org/ns/usdl-core#> .
-@prefix legal:  <http://www.linked-usdl.org/ns/usdl-legal#> .
-@prefix price:  <http://www.linked-usdl.org/ns/usdl-pricing#> .
-@prefix sla:  <http://www.linked-usdl.org/ns/usdl-sla#> .
-@prefix blueprint:  <http://bizweb.sap.com/TR/blueprint#> .
-@prefix vcard:   <http://www.w3.org/2006/vcard/ns#> .
-@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
-@prefix sawsdl:  <http://www.w3.org/ns/sawsdl#> .
-@prefix sarest: <http://www.knoesis.org/research/srl/standards/sa-rest/#> .
-@prefix wl: <http://www.wsmo.org/ns/wsmo-lite#> .
-@prefix http: <http://www.w3.org/2011/http#> .
-
-<#subject> a usdl:ServiceModel;
-dcterms:subject [ a skos:Concept;
-skos:inScheme blueprint:SolutionType ;
-rdfs:label "Business Solution"],
-[ a skos:Concept;
-skos:inScheme blueprint:PlatformType ;
-rdfs:label "Android"],
-[ a skos:Concept;
-skos:inScheme blueprint:BusinessArea ;
-rdfs:label "Services"],
-[ a skos:Concept;
-skos:inScheme blueprint:Industry ;
-rdfs:label "Other services"];
-dcterms:modified ""^^xsd:datetime;
-dcterms:created ""^^xsd:datetime;
-dcterms:title "#name"@en;
-dcterms:abstract ""@en;
-dcterms:description ""@en;
-#       foaf:thumbnail <http://ddrsl001xb.drss.sap.corp:8888/bizwebportal/resources/assets/icons/05_Icon_UIDivision.png>;
-#       foaf:depiction <http://ddrsl001xb.drss.sap.corp:8888/bizweb/icons/GBFlipper_AW.png>
-.
-</script>
-</div>
-
 <div class="snippet" typeof="snippet:Snippet" id="service.n3">
 <h1 class="snippet_title" property="dcterms:title">service.n3</h1>
 <script class="snippet_body" property="snippet:body" type="text/n3">
@@ -2439,17 +2389,13 @@ dcterms:description ""@en;
 @prefix http: <http://www.w3.org/2011/http#> .
 
 <#subject> a usdl:Service;
-dcterms:subject [ a skos:Concept;
-skos:inScheme blueprint:Industry ;
-rdfs:label "Other services"];
+usdl:hasClassification [ a skos:Concept;
+     rdfs:label "Other services"];
 dcterms:modified ""^^xsd:datetime;
 dcterms:created ""^^xsd:datetime;
 dcterms:title "#name"@en;
 dcterms:abstract ""@en;
-dcterms:description ""@en;
-#       foaf:thumbnail <http://ddrsl001xb.drss.sap.corp:8888/bizwebportal/resources/assets/icons/05_Icon_UIDivision.png>;
-#       foaf:depiction <http://ddrsl001xb.drss.sap.corp:8888/bizweb/icons/GBFlipper_AW.png> 
-.
+dcterms:description ""@en .
 </script>
 </div>
 
