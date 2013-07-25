@@ -33,10 +33,13 @@
                      if (!this.removed) {
                        $(this).animate({left: offset}, 
                                        {duration: 500, easing: "swing", queue: false })
-                       if ($(this).hasClass("active"))
+
+                       if ($(this).hasClass("active")) {
                           offset+=$(this).outerWidth()
-                       else
+                       } else {
                           offset+=settings.deckOffset
+                       }
+
                      }
 		   })
 	        }

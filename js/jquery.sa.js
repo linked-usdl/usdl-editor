@@ -1808,7 +1808,7 @@ $('.editHtml').livequery(
                 return false
             })
         })
-
+/*
 $('.dateTimeEdit').livequery(
         function() {
             var input = this
@@ -1846,7 +1846,7 @@ $('.dateTimeEdit').livequery(
                         }
                     })
         })
-
+*/
 function getParameters() {
     if (window.location.hash)
         return decodeURIComponent(window.location.hash.substr(1))

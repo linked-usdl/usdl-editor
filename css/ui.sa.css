@@ -173,6 +173,7 @@ input:-moz-placeholder, textarea:-moz-placeholder {
       font-size: 10pt;
       left: 0;
 //      top: 2pt;
+      margin-top: 2em;
       margin-right: 5pt;
       margin-left: 220pt;
 }
@@ -240,6 +241,14 @@ ul.mainMenu {
    -webkit-box-shadow: -5px 10px 10px #555;
    box-shadow: -5px 10px 10px #555;
    border-radius: 4px 4px 4px 4px;
+   transition: transform 1s ease;
+   -webkit-transition: all 1s ease;
+}
+
+.story .snippetFrame.active {
+   transform: scale(1.1);
+   -webkit-transform: scale(1.1);
+
 }
 
 .snippet_content {
