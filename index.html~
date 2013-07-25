@@ -3,7 +3,8 @@
 prefix="rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# snippet: http://www.snippet.org/2011/snippet# msm: http://cms-wg.sti2.org/ns/minimal-service-model# foaf: http://xmlns.com/foaf/0.1/ owl: http://www.w3.org/2002/07/owl# dcterms: http://purl.org/dc/terms/ gr: http://purl.org/goodrelations/v1#
 usdl: http://www.linked-usdl.org/ns/usdl-core# legal: http://www.linked-usdl.org/ns/usdl-legal# vcard: http://www.w3.org/2006/vcard/ns# xsd: http://www.w3.org/2001/XMLSchema#"
 >
-<head>
+<head prefix="rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# snippet: http://www.snippet.org/2011/snippet# msm: http://cms-wg.sti2.org/ns/minimal-service-model# foaf: http://xmlns.com/foaf/0.1/ owl: http://www.w3.org/2002/07/owl# dcterms: http://purl.org/dc/terms/ gr: http://purl.org/goodrelations/v1#
+usdl: http://www.linked-usdl.org/ns/usdl-core# legal: http://www.linked-usdl.org/ns/usdl-legal# vcard: http://www.w3.org/2006/vcard/ns# xsd: http://www.w3.org/2001/XMLSchema#">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" />
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 <meta property="dcterms:creator" content="Torsten Leidig" />

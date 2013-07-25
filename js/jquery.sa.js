@@ -1808,7 +1808,7 @@ $('.editHtml').livequery(
                 return false
             })
         })
-/*
+
 $('.dateTimeEdit').livequery(
         function() {
             var input = this
@@ -1841,12 +1841,12 @@ $('.dateTimeEdit').livequery(
                                     })
                             document.kb = document.kb.add(newTriple)
                             document.kb.isDirty = true
-                            $(input).data("content.orig", value)
+//                            $(input).data("content.orig", value)
                             $sa.store.registerModification(snippet)
                         }
                     })
         })
-*/
+
 function getParameters() {
     if (window.location.hash)
         return decodeURIComponent(window.location.hash.substr(1))
